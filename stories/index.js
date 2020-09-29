@@ -8,6 +8,8 @@ import "index.scss";
 import Button from "components/Button";
 import DayListItem from "components/DayListItem";
 import DayList from "components/DayList";
+import InterviewerList from "components/InterviewerList";
+import InterviewerListItem from "components/InterviewerListItem";
 
 
 storiesOf("Button", module)
@@ -55,13 +57,47 @@ storiesOf("DayListItem", module) //Initiates Storybook and registers our DayList
     },
   ];
   
-  storiesOf("DayList", module)
+storiesOf("DayList", module)
+  .addParameters({
+    backgrounds: [{ name: "dark", value: "#222f3e", default: true }],
+  })
+  .add("Monday", () => (
+    <DayList days={days} day={"Monday"} setDay={action("setDay")} />
+  ))
+  .add("Tuesday", () => (
+    <DayList days={days} day={"Tuesday"} setDay={action("setDay")} />
+  ));
+
+  const interviewer = {
+    id: 1,
+    name: "Sylvia Palmer",
+    avatar: "https://i.imgur.com/LpaY82x.png"
+  };
+  
+  storiesOf("InterviewerListItem", module)
     .addParameters({
-      backgrounds: [{ name: "dark", value: "#222f3e", default: true }],
+      backgrounds: [{ name: "dark", value: "#222f3e", default: true }]
     })
-    .add("Monday", () => (
-      <DayList days={days} day={"Monday"} setDay={action("setDay")} />
+    .add("Unselected", () => (
+      <InterviewerListItem
+        id={interviewer.id}
+        name={interviewer.name}
+        avatar={interviewer.avatar}
+      />
     ))
-    .add("Tuesday", () => (
-      <DayList days={days} day={"Tuesday"} setDay={action("setDay")} />
+    .add("Selected", () => (
+      <InterviewerListItem
+        id={interviewer.id}
+        name={interviewer.name}
+        avatar={interviewer.avatar}
+        selected
+      />
+    ))
+    .add("Clickable", () => (
+      <InterviewerListItem
+        id={interviewer.id}
+        name={interviewer.name}
+        avatar={interviewer.avatar}
+        setInterviewer={action("setInterviewer")}
+      />
     ));
