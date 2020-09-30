@@ -6,24 +6,6 @@ import "components/Application.scss";
 import DayList from  "components/DayList";
 import Appointments from "components/Appointment";
 
-// const days = [
-//   {
-//     id: 1,
-//     name: "Monday",
-//     spots: 2,
-//   },
-//   {
-//     id: 2,
-//     name: "Tuesday",
-//     spots: 5,
-//   },
-//   {
-//     id: 3,
-//     name: "Wednesday",
-//     spots: 0,
-//   },
-// ];
-
 const appointments = [
   {
     id: 1,
@@ -84,15 +66,12 @@ const appointments = [
 ];
 
 export default function Application(props) {
-  // const [ day, setDay ] = useState("Monday");
-  // const [ days, setDays ] = useState([]);
   const [ state, setState ] = useState({
     day: "Monday",
     days: []
   });
 
   const setDays = function(days) {
-    // setState({...state, days: days});
     setState(prev => ({...prev, days}));
   };
 
