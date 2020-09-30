@@ -1,4 +1,4 @@
-export default function getAppointmentsForDay(state, day) {
+export function getAppointmentsForDay(state, day) {
   let output = [];
   let id;
   const data = state.days.filter(dayEle => dayEle.name === day);
@@ -8,5 +8,17 @@ export default function getAppointmentsForDay(state, day) {
     output = id.map(id => state.appointments[id]);
   }
 
+  return output;
+};
+
+export function getInterview(state, interview) {
+  let output = null;
+  
+  if (interview) {
+    // console.log(interview.interviewers);
+    // output = interview.interviewer;
+    output = {...interview, interviewer: state.interviewers[interview.interviewer]};
+  }
+  
   return output;
 };
