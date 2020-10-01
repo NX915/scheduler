@@ -4,11 +4,14 @@ export default function useVisualMode(initial) {
   const [mode, setMode] = useState(initial);
   const [history, setHistory] = useState([initial]);
 
-  const transition = function(newMode) {
+  const transition = function(newMode, replace = false) {
     setMode(newMode);
     setHistory(prev => {
       // console.log(prev);
       const newArr = [...prev];
+      if (replace) {
+        newArr.pop();
+      }
       newArr.push(newMode);
       // console.log(newArr);
       return newArr;
