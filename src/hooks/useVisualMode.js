@@ -8,13 +8,12 @@ export default function useVisualMode(initial) {
     setMode(newMode);
     setHistory(prev => {
       // console.log(prev);
-      const newArr = [...prev];
+      let newArr = [...prev];
       if (replace) {
-        newArr.pop();
+        newArr = newArr.slice(0, newArr.length - 1);
       }
-      newArr.push(newMode);
       // console.log(newArr);
-      return newArr;
+      return [...newArr, newMode];
     });
   };
 
@@ -23,7 +22,7 @@ export default function useVisualMode(initial) {
       // console.log(prev);
       const newArr = [...prev];
       if (newArr.length > 1) {
-        newArr.pop();
+        return newArr.slice(0, newArr.length - 1);
       }
       // console.log(newArr);
       return newArr;
