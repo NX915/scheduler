@@ -146,12 +146,12 @@ storiesOf("InterviewerList", module)
     />
   ))
 
-storiesOf("Appointment", module)
+  storiesOf("Appointment", module)
   .addParameters({
     backgrounds: [{ name: "white", value: "#fff", default: true }]
   })
   .add("Appointment", () => <Appointment />)
-  .add("Appointment at 12pm", () => <Appointment time='12pm'/>)
+  .add("Appointment with Time", () => <Appointment time="12pm" />)
   .add("Header", () => <Header time='12pm'/>)
   .add("Empty", () => <Empty onAdd={action('onAdd')}/>)
   .add("Show", () => (

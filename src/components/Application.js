@@ -27,14 +27,13 @@ export default function Application(props) {
       ...state.appointments,
       [id]: appointment
     };
-    setState({
-      ...state,
-      appointments
-    });
-    // useEffect(() => {
-    //   axios.put(`/api/appointments/${id}`, appointment)
-    //     .then();
-    // }, []);
+    return axios.put(`/api/appointments/${id}`, appointment)
+      .then((res) => {
+          setState({
+            ...state,
+            appointments
+          });
+        });
   };
 
   const dailyAppointments = getAppointmentsForDay(state, state.day);
