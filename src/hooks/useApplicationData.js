@@ -12,6 +12,16 @@ export default function useApplicationData() {
   const bookInterview = function(id, interview) {
     // console.log(id, interview);
     // console.log(state);
+    // console.log('spots', state.days[Math.floor(id / 5)].spots);
+    const dayIndex = Math.floor((id - 1) / 5);
+    // console.log(id, dayIndex);
+    const spots = state.days[dayIndex].spots - 1;
+    // console.log(state.days[dayIndex].spots, spots);
+
+    const day = {...state.days[dayIndex], spots: spots};
+    const days = [...state.days];
+    days[dayIndex] = day;
+
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview }
@@ -25,7 +35,8 @@ export default function useApplicationData() {
       .then((res) => {
           setState({
             ...state,
-            appointments
+            appointments,
+            days
           });
         });
   };
