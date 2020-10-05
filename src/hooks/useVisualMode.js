@@ -1,11 +1,11 @@
 import { useState } from "react";
 
 export default function useVisualMode(initial) {
-  const [mode, setMode] = useState(initial);
+  // const [mode, setMode] = useState(initial);
   const [history, setHistory] = useState([initial]);
 
   const transition = function(newMode, replace = false) {
-    setMode(newMode);
+    // setMode(newMode);
     setHistory(prev => {
       // console.log(prev);
       let newArr = [...prev];
@@ -29,9 +29,9 @@ export default function useVisualMode(initial) {
     });
     // console.log(history[history.length - 1]);
     
-    const backAmount = history.length > 1 ? 2 : 1;
-    setMode(history[history.length - backAmount]);
+    // const backAmount = history.length > 1 ? 2 : 1;
+    // setMode(history[history.length - backAmount]);
   };
 
-  return {mode, transition, back};
+  return {mode: history[history.length - 1], transition, back};
 };

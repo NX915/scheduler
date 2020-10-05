@@ -9,17 +9,25 @@ export default function useApplicationData() {
     interviewer: null
   });
 
-  const changeSpotRemaining = function(id, num) {
+  const changeSpotRemaining = function(state) {
     // console.log('spots', state.days[Math.floor(id / 5)].spots);
-    const dayIndex = Math.floor((id - 1) / 5);
+    // const dayIndex = Math.floor((id - 1) / 5);
     // console.log(id, dayIndex);
-    const spots = state.days[dayIndex].spots + num;
+    // const spots = state.days[dayIndex].spots + num;
     // console.log(state.days[dayIndex].spots, spots);
 
-    const day = {...state.days[dayIndex], spots: spots};
-    const days = [...state.days];
-    days[dayIndex] = day;
-    return days;
+    // const day = {...state.days[dayIndex], spots: spots};
+    // const days = [...state.days];
+    // days[dayIndex] = day;
+    // return days;
+    // setState(prev => {
+    //   return {...prev, days};
+    // });
+    const days = state.days.map(day => {
+      const spots = day.appointments.filter(id => state.appointments[id].interview === null).length;
+      return {...day, spots};
+    });
+    return {...state, days};
   }
 
   const bookInterview = function(id, interview) {
@@ -31,20 +39,23 @@ export default function useApplicationData() {
       interview: { ...interview }
     };
     // console.log(appointment);
-    const appointments = {
-      ...state.appointments,
-      [id]: appointment
-    };
+    // const appointments = {
+    //   ...state.appointments,
+    //   [id]: appointment
+    // };
 
-    const days = changeSpotRemaining(id, -1);
+    // const days = changeSpotRemaining(id, -1);
 
     return axios.put(`/api/appointments/${id}`, appointment)
       .then((res) => {
-          setState({
+          setState(state => ({
             ...state,
-            appointments,
-            days
-          });
+            appointments: {
+              ...state.appointments,
+              [id]: appointment
+            },
+          }));
+          setState(changeSpotRemaining);
         });
   };
 
@@ -53,19 +64,20 @@ export default function useApplicationData() {
       ...state.appointments[id],
       interview: null
     }
-    const appointments = {
-      ...state.appointments,
-      [id]: appointment
-    }
-    const days = changeSpotRemaining(id, 1);
+    // const appointments = {
+    //   ...state.appointments,
+    //   [id]: appointment
+    // }
+    // const days = changeSpotRemaining(id, 1);
 
     return axios.delete(`/api/appointments/${id}`)
     .then((res) => {
-        setState({
-          ...state,
-          appointments,
-          days
+        setState(state => {
+          return {
+            ...state, appointments: {...state.appointments, [id]: appointment}
+          }
         });
+        setState(changeSpotRemaining);
       });
   };
 
