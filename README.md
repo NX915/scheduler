@@ -2,7 +2,7 @@
 
 ## Intro
 
-This is a interview scheduler made as part of the Lighthouse web dev bootcamp. It is a full stack app that allows users to book, edit, and cancel interviews within the single page app. Various unit, intergration, and end to end tests implemented to ensure the correct functionality of the app.
+This is a interview scheduler made as part of the Lighthouse web dev bootcamp. It is a single page app that allows users to book, edit, and cancel interviews within the single page environment. Various unit, intergration, and end to end tests implemented to ensure the correct functionality of the app.
 
 ## Screenshot
 
