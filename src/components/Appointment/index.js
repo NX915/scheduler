@@ -22,7 +22,7 @@ const ERROR_SAVE = "ERROR_SAVE";
 const ERROR_DELETE = "ERROR_DELETE";
 
 export default function Appointment(props) {
-
+  //use custom hook to change mode state
   const { mode, transition, back } = useVisualMode(props.interview ? SHOW : EMPTY);
 
   const save = function(name, interviewer) {
@@ -54,6 +54,7 @@ export default function Appointment(props) {
       });
   };
 
+  //display different elements depending on state
   return (
     <article className="appointment" data-testid="appointment">
       <Header time={props.time}/>

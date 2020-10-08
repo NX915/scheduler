@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+//use history to track mode changes and allow return back to previous modes
 export default function useVisualMode(initial) {
   const [history, setHistory] = useState([initial]);
 

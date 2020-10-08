@@ -8,17 +8,18 @@ export default function Form(props) {
   const [interviewer, setInterviewer] = useState(props.interviewer ? props.interviewer.id : null);
   const [error, setError] = useState("");
 
-
   function reset() {
     setName("");
     setInterviewer(null);
   }
 
+  //clears name field after user cancels
   function cancel() {
     reset();
     props.onCancel();
   }
 
+  //check name and interviewer is selected before calling onSave
   function validate() {
     if (name === "") {
       setError("Student name cannot be blank");
