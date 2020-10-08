@@ -1,5 +1,9 @@
 # Interview Scheduler
 
+## Intro
+
+This is a interview scheduler made as part of the Lighthouse web dev bootcamp.
+
 ## Setup
 
 Install dependencies with `npm install`.
