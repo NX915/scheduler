@@ -4,8 +4,6 @@ import PropTypes from "prop-types";
 import "components/InterviewerList.scss";
 import InterviewerListItem from "components/InterviewerListItem";
 
-// const classnames = require("classnames");
-
 export default function InterviewerList (props) {
 
   return (
